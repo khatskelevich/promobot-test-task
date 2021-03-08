@@ -1,18 +1,18 @@
 <template>
   <div class="products">
-    <div v-for="(item, key) in products" class="products-item" @click="toProductCard(item)">
+    <div v-for="(item, key) in products" class="products-item" @click="clickHandler(item,$event)">
       <div class="item-container item-img">
         <img alt="" :src="require(`@/assets/products/${key+1}.jpg`)">
       </div>
       <div class="item-container item-options">
         <div class="item-name">{{ item.name }}</div>
         <div class="item-price">{{ item.price }}</div>
-        <button class="button" @click="addToCart(item)">Добавить в корзину</button>
+        <button class="button">Добавить в корзину</button>
       </div>
     </div>
 
     <portal v-if="showModal" to="modal">
-      <ProductCard :item="modalItem" @close="show = false"/>
+      <ProductCard :item="productDetails" @close="show = false"/>
     </portal>
 
   </div>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       show: false,
-      modalItem: Object
+      productDetails: Object
     }
   },
   computed: {
@@ -37,18 +37,21 @@ export default {
     showModal() {
       return this.show;
     },
-    cModalItem() {
-      return this.modalItem;
-    }
   },
   methods: {
     ...mapActions('cart', ['addToCart']),
+    clickHandler(item, event) {
+      // I want to open product details on click everywhere inside product card, excepts button.
+      // On button click I want to add to cart.
+      if (event.target.className === 'button') this.addToCart(item);
+      else this.toProductCard(item);
+    },
     getImage(key) {
       return require("@/assets/products/" + (key + 1) + ".jpg");
     },
     toProductCard(item) {
       this.show = true;
-      this.modalItem = {...item};
+      this.productDetails = {...item};
     }
   }
 }
@@ -80,6 +83,7 @@ export default {
 }
 
 .item-img {
+  object-fit: cover;
   height: 100px;
 }
 </style>
