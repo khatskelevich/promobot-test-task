@@ -5,19 +5,19 @@
       <router-link class="nav-item link" active-class="link__active" to="/about">About</router-link>
     </div>
     <div class="nav__right">
-      <div class="cart">
+      <div class="nav-cart" @click="isCartOpen = true">
         <img src="../assets/shopping-bags.svg" alt="Cart">
       </div>
     </div>
 
-    <portal v-if="false" to="modal">
-      <Modal>
-        <slot name="title">
+    <portal v-if="cShowCart" to="modal">
+      <Modal @close="isCartOpen = false">
+        <template v-slot:title>
           <h3>Cart</h3>
-        </slot>
-        <slot name="body">
+        </template>
+        <template v-slot:body>
           <Cart></Cart>
-        </slot>
+        </template>
       </Modal>
     </portal>
 
@@ -27,12 +27,23 @@
 <script>
 import Modal from "@/components/Modal";
 import Cart from "@/components/Cart";
+
 export default {
   name: "Navigation",
   components: {
     Modal,
     Cart
   },
+  data() {
+    return {
+      isCartOpen: false
+    }
+  },
+  computed: {
+    cShowCart() {
+      return this.isCartOpen;
+    }
+  }
 }
 </script>
 
@@ -64,27 +75,24 @@ export default {
   line-height: 50px;
 }
 
-.cart {
+.nav-cart {
   cursor: pointer;
-  transition: width 0.8s;
+  transition: width 0.3s;
+  width: 30px;
 }
 
-.cart:hover {
+.nav-cart:hover {
   width: 33px;
 }
 
-.link {
+.nav .link {
   text-decoration: none;
   color: white;
   font-weight: 600;
-  transition: background-color 1s;
+  transition: background-color .5s;
 }
 
-.link:hover {
+.nav .link:hover {
   background-color: rgb(67, 71, 74);
-}
-
-.cart {
-  width: 30px;
 }
 </style>
