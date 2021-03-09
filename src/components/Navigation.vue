@@ -11,27 +11,18 @@
     </div>
 
     <portal v-if="cShowCart" to="modal">
-      <Modal @close="isCartOpen = false">
-        <template v-slot:title>
-          <h3>Cart</h3>
-        </template>
-        <template v-slot:body>
-          <Cart></Cart>
-        </template>
-      </Modal>
+      <Cart @close="isCartOpen = false"></Cart>
     </portal>
 
   </nav>
 </template>
 
 <script>
-import Modal from "@/components/Modal";
 import Cart from "@/components/Cart";
 
 export default {
   name: "Navigation",
   components: {
-    Modal,
     Cart
   },
   data() {

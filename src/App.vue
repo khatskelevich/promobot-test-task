@@ -36,6 +36,18 @@ img {
   height: auto;
 }
 
+button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,7 +61,6 @@ img {
   text-align: center;
   font-size: 17px;
   font-weight: 500;
-  cursor: pointer;
   transition: opacity .3s ease;
 }
 

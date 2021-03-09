@@ -40,8 +40,19 @@ export default {
                 commit('pushProductToCart', product);
             }
         },
+        decrementQuantity({commit, state}, product) {
+            let cartItem = state.cart.find(item => item.product.id === product.id);
+            if (cartItem.quantity === 1) {
+                commit('removeFromCart', product);
+            } else {
+                commit('decrementQuantity', cartItem.product)
+            }
+        },
+        incrementQuantity({commit, state}, product) {
+            commit('incrementQuantity', product);
+        },
         removeFromCart({commit, state}, product) {
-
+            commit('removeFromCart', product);
         }
     }
 }

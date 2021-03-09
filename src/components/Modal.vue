@@ -93,6 +93,7 @@ export default {
   background-color: #20b2aa;
   color: #fff;
   padding: 8px;
+  margin: 0 5px;
   border-radius: 8px;
   min-width: 150px;
 }

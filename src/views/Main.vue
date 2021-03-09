@@ -75,6 +75,7 @@ export default {
   box-shadow: 0 14px 12px rgba(0, 0, 0, 0.25), 0 10px 1px rgba(0, 0, 0, 0.22);
   display: flex;
   flex-flow: column wrap;
+  cursor: pointer;
 }
 
 .product-item {
@@ -86,9 +87,6 @@ export default {
   height: 100%;
   max-height: 300px;
   object-fit: cover;
-}
-
-.product-item .item-name {
 }
 
 .product-item .item-price {
@@ -103,21 +101,4 @@ export default {
   border-radius: 3px;
   min-width: 150px;
 }
-
-/*.products-item {*/
-/*  border: 1px solid black;*/
-/*  flex: 1 0 300px;*/
-/*  display: flex;*/
-/*  flex-wrap: wrap;*/
-/*  justify-content: space-between;*/
-/*}*/
-
-/*.item-container {*/
-/*  flex: 1 0 200px;*/
-/*}*/
-
-/*.item-img {*/
-/*  object-fit: cover;*/
-/*  height: 100px;*/
-/*}*/
 </style>
