@@ -6,18 +6,16 @@
     </template>
     <template v-slot:body>
       <div id="cart" class="cart" v-if="cartLength">
-        <div class="cart-item" v-for="(item, key) in cart">
+        <div class="cart-item" v-for="item in cart">
           <span class="cart-description">
             {{ item.product.name }}, {{ item.product.price | currency }} x {{ item.quantity }}
           </span>
           <button class="cart-button button" @click="incrementQuantity(item.product)">+</button>
-          <!--        <input type="number" value="1" min="1">-->
           <button class="cart-button button" @click="decrementQuantity(item.product)">-</button>
           <button class="cart-button button" @click="removeFromCart(item)">
             <img class="cart-img" src="../assets/delete.svg"
                  alt="Delete"></button>
         </div>
-        <button></button>
       </div>
       <div v-else class="plug">Cart is empty.</div>
     </template>

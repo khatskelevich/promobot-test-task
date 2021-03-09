@@ -1,12 +1,13 @@
 export default {
     namespaced: true,
     state: {
-        cart: [] // { product:{id,name,price}, quantity:Number }
+        cart: [] // Cart structure: { product:{id,name,price}, quantity:Number }
     },
     getters: {
         getCartItems: state => {
             return state.cart;
         },
+        // returns count of added items
         getCartItemsCount: state => {
             return state.cart.reduce((acc, item) => {
                return acc + item.quantity
@@ -34,6 +35,8 @@ export default {
         },
     },
     actions: {
+        // Add item to cart.
+        // Or rise quantity if item added already.
         addToCart({commit, state}, product) {
             let cartItem = state.cart.find(item => item.product.id === product.id);
             if (cartItem) {
@@ -42,6 +45,8 @@ export default {
                 commit('pushProductToCart', product);
             }
         },
+        // Reduce item quantity.
+        // Or remove from cart if reduce equals zero.
         decrementQuantity({commit, state}, product) {
             let cartItem = state.cart.find(item => item.product.id === product.id);
             if (cartItem.quantity === 1) {

@@ -3,13 +3,9 @@
     <div class="modal-shadow" @click.self="closeModal">
       <div class="modal">
         <div class="modal-close" @click="closeModal">&#10006;</div>
-        <slot name="title" class="modal-title">
-          <!--            <h3 v-if="title">{{title}}</h3>-->
-        </slot>
+        <slot name="title" class="modal-title"></slot>
         <hr>
-        <slot name="body" class="modal-content">
-          <!--            <p v-if="body" v-html="body"></p>-->
-        </slot>
+        <slot name="body" class="modal-content"></slot>
         <hr>
         <slot name="footer">
           <div class="modal-footer">
@@ -33,12 +29,6 @@ export default {
     closeModal() {
       this.$emit('close');
     }
-  },
-  computed: {
-    // ...mapGetters({
-    //   title: 'getTitle',
-    //   body: 'getBody'
-    // })
   }
 }
 </script>

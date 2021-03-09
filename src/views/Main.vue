@@ -36,7 +36,7 @@ export default {
     return {
       show: false,
       productDetails: Object,
-      options: {
+      options: { //slider options
         // heightRatio: 0.3,
         perPage: 3,
       }

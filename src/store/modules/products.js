@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
     state: {
-        products: [] //{id,name,description,img,price}
+        products: [] //Product structure: {id, name, description, img, price}
     },
     getters: {
         getProducts: state => {
