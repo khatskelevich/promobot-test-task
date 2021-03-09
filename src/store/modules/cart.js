@@ -5,7 +5,7 @@ export default {
     },
     getters: {
         getCartItems: state => {
-            return state.cart; //TODO Maybe you need another output?
+            return state.cart;
         },
         getCartItemsCount: state => {
             return state.cart.reduce((acc, item) => {
