@@ -7,6 +7,7 @@
     <div class="nav__right">
       <div class="nav-cart" @click="isCartOpen = true">
         <img src="../assets/shopping-bags.svg" alt="Cart">
+        <div v-if="counter" class="counter">{{ counter }}</div>
       </div>
     </div>
 
@@ -19,6 +20,7 @@
 
 <script>
 import Cart from "@/components/Cart";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Navigation",
@@ -31,6 +33,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('cart', {counter: 'getCartItemsCount'}),
     cShowCart() {
       return this.isCartOpen;
     }
@@ -70,10 +73,24 @@ export default {
   cursor: pointer;
   transition: width 0.3s;
   width: 30px;
+  position: relative;
 }
 
 .nav-cart:hover {
   width: 33px;
+}
+
+.nav-cart .counter {
+  position: absolute;
+  bottom: -5px;
+  left: -10px;
+  background-color: white;
+  border-radius: 20px;
+  width: 21px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: 600;
 }
 
 .nav .link {

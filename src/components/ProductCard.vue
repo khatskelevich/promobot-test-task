@@ -75,13 +75,4 @@ export default {
   flex: 0 0 20px;
 }
 
-/*.card-container .button {*/
-/*  flex: 0 0 35px;*/
-/*  background-color: #4c5458;*/
-/*  color: white;*/
-/*  padding: 8px;*/
-/*  border-radius: 3px;*/
-/*  min-width: 150px;*/
-/*}*/
-
 </style>

@@ -89,8 +89,16 @@ export default {
   object-fit: cover;
 }
 
+.product-item .item-name {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
 .product-item .item-price {
   min-height: 30px;
+  line-height: 30px;
 }
 
 .products .button {
