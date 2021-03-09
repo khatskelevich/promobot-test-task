@@ -8,7 +8,9 @@ export default {
             return state.cart; //TODO Maybe you need another output?
         },
         getCartItemsCount: state => {
-            return state.cart.length;
+            return state.cart.reduce((acc, item) => {
+               return acc + item.quantity
+            }, 0);
         }
     },
     mutations: {

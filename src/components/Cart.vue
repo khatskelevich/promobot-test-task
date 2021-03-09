@@ -19,7 +19,7 @@
         </div>
         <button></button>
       </div>
-      <div v-else class="plug">Cart empty.</div>
+      <div v-else class="plug">Cart is empty.</div>
     </template>
     <template v-slot:footer>
       <div class="modal-footer">
@@ -90,6 +90,10 @@ input[type=number] {
   text-align: left;
   height: 30px;
   line-height: 30px;
+}
+
+.plug {
+  line-height: 50px;
 }
 
 </style>
