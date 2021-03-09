@@ -13,7 +13,7 @@
         <hr>
         <slot name="footer">
           <div class="modal-footer">
-            <button class="modal-footer__button" @click="closeModal">
+            <button class="modal-footer__button button" @click="closeModal">
               Close
             </button>
           </div>
@@ -51,6 +51,7 @@ export default {
   min-height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.39);
+  z-index: 10;
 }
 
 .modal {
@@ -68,7 +69,7 @@ export default {
 .modal-close {
   border-radius: 50%;
   color: #fff;
-  background: #2a4cc7;
+  background: #20b2aa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +82,7 @@ export default {
 }
 
 .modal-title {
-  color: #0971c7;
+  color: #20b2aa;
 }
 
 .modal-content {
@@ -89,13 +90,9 @@ export default {
 }
 
 .modal-footer__button {
-  background-color: #0971c7;
+  background-color: #20b2aa;
   color: #fff;
-  border: none;
-  text-align: center;
   padding: 8px;
-  font-size: 17px;
-  font-weight: 500;
   border-radius: 8px;
   min-width: 150px;
 }

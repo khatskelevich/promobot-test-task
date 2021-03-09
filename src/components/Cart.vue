@@ -5,7 +5,7 @@
         {{item.product.name}}, {{item.product.price}} * {{item.quantity}}
       </li>
     </ul>
-    <div v-else class="plug">Корзина пуста.</div>
+    <div v-else class="plug">Cart empty.</div>
   </div>
 </template>
 

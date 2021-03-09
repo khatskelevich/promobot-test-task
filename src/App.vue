@@ -43,4 +43,17 @@ img {
   text-align: center;
   color: #2c3e50;
 }
+
+.button {
+  border: none;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
 </style>

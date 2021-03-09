@@ -1,15 +1,18 @@
 <template>
+
   <div class="products">
-    <div v-for="(item, key) in products" class="products-item" @click="clickHandler(item,$event)">
-      <div class="item-container item-img">
-        <img alt="" :src="require(`@/assets/products/${key+1}.jpg`)">
-      </div>
-      <div class="item-container item-options">
-        <div class="item-name">{{ item.name }}</div>
-        <div class="item-price">{{ item.price }}</div>
-        <button class="button">Добавить в корзину</button>
-      </div>
-    </div>
+    <splide :slides="products" :options="options">
+      <splide-slide v-for="(item, key) in products" :key="key">
+        <div class="product-container">
+          <div class="product-item" @click="toProductCard(item)">
+            <img class="item-img" alt="" :src="require(`@/assets/products/${key+1}.jpg`)">
+            <div class="item-name">{{ item.name }}</div>
+            <div class="item-price">{{ item.price | currency}}</div>
+          </div>
+          <button class="button" @click="addToCart(item)">Add to cart</button>
+        </div>
+      </splide-slide>
+    </splide>
 
     <portal v-if="showModal" to="modal">
       <ProductCard :item="productDetails" @close="show = false"/>
@@ -19,17 +22,24 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex';
+import {Splide, SplideSlide} from '@splidejs/vue-splide';
 import ProductCard from "@/components/ProductCard";
 
 export default {
   components: {
-    ProductCard
+    ProductCard,
+    Splide,
+    SplideSlide,
   },
   data() {
     return {
       show: false,
-      productDetails: Object
+      productDetails: Object,
+      options: {
+        // heightRatio: 0.3,
+        perPage: 3,
+      }
     }
   },
   computed: {
@@ -40,12 +50,6 @@ export default {
   },
   methods: {
     ...mapActions('cart', ['addToCart']),
-    clickHandler(item, event) {
-      // I want to open product details on click everywhere inside product card, excepts button.
-      // On button click I want to add to cart.
-      if (event.target.className === 'button') this.addToCart(item);
-      else this.toProductCard(item);
-    },
     getImage(key) {
       return require("@/assets/products/" + (key + 1) + ".jpg");
     },
@@ -62,28 +66,58 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
+}
+
+.product-container {
+  margin: 14px;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 0 14px 12px rgba(0, 0, 0, 0.25), 0 10px 1px rgba(0, 0, 0, 0.22);
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
 }
 
-.products-item {
-  border: 1px solid black;
-  flex: 1 0 300px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.product-item {
+  flex: 1 0 150px;
 }
 
-.item-container {
-  flex: 1 0 200px;
-}
-
-.item-price {
-  flex: 1 0 auto;
-}
-
-.item-img {
+.product-item .item-img {
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
   object-fit: cover;
-  height: 100px;
 }
+
+.product-item .item-name {
+}
+
+.product-item .item-price {
+  min-height: 30px;
+}
+
+.products .button {
+  flex: 0 0 50px;
+  background-color: #4c5458;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+  min-width: 150px;
+}
+
+/*.products-item {*/
+/*  border: 1px solid black;*/
+/*  flex: 1 0 300px;*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  justify-content: space-between;*/
+/*}*/
+
+/*.item-container {*/
+/*  flex: 1 0 200px;*/
+/*}*/
+
+/*.item-img {*/
+/*  object-fit: cover;*/
+/*  height: 100px;*/
+/*}*/
 </style>
