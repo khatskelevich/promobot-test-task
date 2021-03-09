@@ -4,7 +4,7 @@
     <splide :slides="products" :options="options">
       <splide-slide v-for="(item, key) in products" :key="key">
         <div class="product-container">
-          <div class="product-item" @click="toProductCard(item)">
+          <div class="product-item" @click="toProductCard(item, key+1)">
             <img class="item-img" alt="" :src="require(`@/assets/products/${key+1}.jpg`)">
             <div class="item-name">{{ item.name }}</div>
             <div class="item-price">{{ item.price | currency}}</div>
@@ -53,9 +53,9 @@ export default {
     getImage(key) {
       return require("@/assets/products/" + (key + 1) + ".jpg");
     },
-    toProductCard(item) {
+    toProductCard(item, key) {
       this.show = true;
-      this.productDetails = {...item};
+      this.productDetails = {key: key, ...item};
     }
   }
 }
