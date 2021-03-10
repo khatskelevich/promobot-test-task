@@ -93,22 +93,18 @@ export default {
 
 .modal-footer {
   height: 40px;
+  width: 250px;
+  display: flex;
+  margin: 0 auto;
 }
 
 .modal-footer__button {
+  height: 40px;
   background-color: #20b2aa;
+  flex: 1 1 150px;
   color: #fff;
   padding: 8px;
   margin: 0 5px;
   border-radius: 8px;
-  min-width: 150px;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0
 }
 </style>

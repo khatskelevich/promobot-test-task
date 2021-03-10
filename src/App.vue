@@ -74,4 +74,12 @@ button:focus {
 .button:hover {
   opacity: 0.9;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
 </style>
