@@ -31,7 +31,7 @@ export default {
         return products;
     },
     generateIds() {
-        return (+new Date).toString(16);
+        return (~~(Math.random()*1e8)).toString(16);
     },
     loadProducts() {
         return new Promise(resolve => {
