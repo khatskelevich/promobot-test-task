@@ -1,5 +1,7 @@
 # vue-cli-shop
 
+[Русский README.md](russian.md)
+
 ## Project setup
 ```
 npm install
