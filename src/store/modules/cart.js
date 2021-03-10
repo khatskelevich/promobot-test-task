@@ -12,6 +12,9 @@ export default {
             return state.cart.reduce((acc, item) => {
                return acc + item.quantity
             }, 0);
+        },
+        isProductInCart: state => product => {
+            return state.cart.some(item => item.product.id === product.id);
         }
     },
     mutations: {
