@@ -1,24 +1,26 @@
 <template>
+  <transition v-if="loaded" name="fade">
+    <div class="products">
 
-  <div class="products">
-    <splide :slides="products" :options="options">
-      <splide-slide v-for="(item, key) in products" :key="key">
-        <div class="product-container">
-          <div class="product-item" @click="toProductCard(item, key+1)">
-            <img class="item-img" alt="" :src="require(`@/assets/products/${key+1}.jpg`)">
-            <div class="item-name">{{ item.name }}</div>
-            <div class="item-price">{{ item.price | currency}}</div>
+      <splide :slides="products" :options="options">
+        <splide-slide v-for="(item, key) in products" :key="key">
+          <div class="product-container">
+            <div class="product-item" @click="toProductCard(item, key+1)">
+              <img class="item-img" alt="" :src="require(`@/assets/products/${item.cover}`)">
+              <div class="item-name">{{ item.name }}</div>
+              <div class="item-price">{{ item.price | currency }}</div>
+            </div>
+            <button class="button" @click="addToCart(item)">Add to cart</button>
           </div>
-          <button class="button" @click="addToCart(item)">Add to cart</button>
-        </div>
-      </splide-slide>
-    </splide>
+        </splide-slide>
+      </splide>
 
-    <portal v-if="showModal" to="modal">
-      <ProductCard :item="productDetails" @close="show = false"/>
-    </portal>
+      <portal v-if="showModal" to="modal">
+        <ProductCard :item="productDetails" @close="show = false"/>
+      </portal>
 
-  </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -37,22 +39,18 @@ export default {
       show: false,
       productDetails: Object,
       options: { //slider options
-        // heightRatio: 0.3,
         perPage: 3,
       }
     }
   },
   computed: {
-    ...mapGetters('products', {products: 'getProducts'}),
+    ...mapGetters('products', {products: 'getProducts', loaded: 'isLoaded'}),
     showModal() {
       return this.show;
     },
   },
   methods: {
     ...mapActions('cart', ['addToCart']),
-    getImage(key) {
-      return require("@/assets/products/" + (key + 1) + ".jpg");
-    },
     toProductCard(item, key) {
       this.show = true;
       this.productDetails = {key: key, ...item};
@@ -108,5 +106,13 @@ export default {
   padding: 8px;
   border-radius: 3px;
   min-width: 150px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0
 }
 </style>

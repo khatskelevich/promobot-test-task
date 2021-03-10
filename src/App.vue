@@ -16,7 +16,10 @@ export default {
   name: "App",
   components: {Navigation, Modal},
   created() {
-    this.setProducts(api.loadProducts());
+    let response = api.loadProducts();
+    response.then(
+        result => this.setProducts(result)
+    );
   },
   methods: {
     ...mapMutations('products', ['setProducts'])

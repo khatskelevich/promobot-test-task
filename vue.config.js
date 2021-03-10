@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/vue-cli-shop/'
+    // publicPath: '/vue-cli-shop/'
 }

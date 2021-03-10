@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal" appear>
+  <transition name="fade" appear>
     <div class="modal-shadow" @click.self="closeModal">
       <div class="modal">
         <div class="modal-close" @click="closeModal">&#10006;</div>
@@ -88,11 +88,11 @@ export default {
   min-width: 150px;
 }
 
-.modal-enter-active, .modal-leave-active {
+.fade-enter-active, .fade-leave-active {
   transition: opacity .3s ease;
 }
 
-.modal-enter, .modal-leave-to {
+.fade-enter, .fade-leave-to {
   opacity: 0
 }
 </style>
