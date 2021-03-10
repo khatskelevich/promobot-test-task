@@ -48,14 +48,14 @@ export default {
   },
   methods: {
     ...mapActions('cart', ['removeFromCart', 'decrementQuantity', 'incrementQuantity']),
-    print(){
+    print() {
       window.print();
     },
   }
 }
 </script>
 
-<style scoped>
+<style>
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -64,6 +64,12 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.cart {
+  padding: 5px 0;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .cart .cart-item {

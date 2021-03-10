@@ -2,18 +2,26 @@
   <transition name="fade" appear>
     <div class="modal-shadow" @click.self="closeModal">
       <div class="modal">
-        <div class="modal-close" @click="closeModal">&#10006;</div>
-        <slot name="title" class="modal-title"></slot>
-        <hr>
-        <slot name="body" class="modal-content"></slot>
-        <hr>
-        <slot name="footer">
-          <div class="modal-footer">
-            <button class="modal-footer__button button" @click="closeModal">
-              Close
-            </button>
-          </div>
-        </slot>
+
+        <div class="modal-title">
+          <div class="modal-close" @click="closeModal">&#10006;</div>
+          <slot name="title"></slot>
+        </div>
+
+        <div class="modal-content">
+          <slot name="body"></slot>
+        </div>
+
+        <div class="modal-footer">
+          <slot name="footer">
+            <div class="modal-footer">
+              <button class="modal-footer__button button" @click="closeModal">
+                Close
+              </button>
+            </div>
+          </slot>
+        </div>
+
       </div>
     </div>
   </transition>
@@ -50,6 +58,7 @@ export default {
   padding: 15px;
   min-width: 420px;
   max-width: 480px;
+  max-height: 50vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,11 +81,18 @@ export default {
 }
 
 .modal-title {
+  height: 40px;
+  line-height: 40px;
   color: #20b2aa;
 }
 
 .modal-content {
-  margin-bottom: 20px
+  height: calc(50vh - 100px);
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  height: 40px;
 }
 
 .modal-footer__button {

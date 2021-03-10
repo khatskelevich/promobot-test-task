@@ -46,7 +46,7 @@ export default {
 .card-container {
   display: flex;
   padding: 5px;
-  max-height: 400px;
+  max-height: 100%;
 }
 
 .card-container .item-img {
