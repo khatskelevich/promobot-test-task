@@ -10,7 +10,8 @@
               <div class="item-name">{{ item.name }}</div>
               <div class="item-price">{{ item.price | currency }}</div>
             </div>
-            <button class="button" @click="addToCart(item)">Add to cart</button>
+            <button v-if="isAdded(item)" class="button button__disabled">In cart</button>
+            <button v-else class="button" @click="buy(item)">Add to cart</button>
           </div>
         </splide-slide>
       </splide>
@@ -40,11 +41,12 @@ export default {
       productDetails: Object,
       options: { //slider options
         perPage: 3,
-      }
+      },
     }
   },
   computed: {
     ...mapGetters('products', {products: 'getProducts', loaded: 'isLoaded'}),
+    ...mapGetters('cart', {isAdded: 'isProductInCart'}),
     showModal() {
       return this.show;
     },
@@ -54,7 +56,10 @@ export default {
     toProductCard(item, key) {
       this.show = true;
       this.productDetails = {key: key, ...item};
-    }
+    },
+    buy(product) {
+      this.addToCart(product);
+    },
   }
 }
 </script>
@@ -107,12 +112,8 @@ export default {
   border-radius: 3px;
   min-width: 150px;
 }
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0
+.products .button__disabled{
+  cursor: not-allowed;
+  opacity: 0.9;
 }
 </style>

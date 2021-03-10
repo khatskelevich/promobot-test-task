@@ -17,7 +17,19 @@
       </div>
     </template>
     <template v-slot:footer>
-      <button class="modal-footer__button button" @click="addToCart(item)">Add to cart</button>
+
+      <template v-if="isProductInCart(item)">
+        <button class="modal-footer__button button" @click="incrementQuantity(item)">+</button>
+        <button class="modal-footer__button button" @click="decrementQuantity(item)">-</button>
+        <button class="modal-footer__button button" @click="removeFromCart(item)">
+          <img src="../assets/delete.svg"
+               alt="Delete"></button>
+      </template>
+
+      <template v-else>
+        <button class="modal-footer__button button" @click="addToCart(item)">Add to cart</button>
+      </template>
+
     </template>
   </Modal>
 
@@ -25,7 +37,7 @@
 
 <script>
 import Modal from "@/components/Modal";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "ProductCard",
@@ -35,8 +47,11 @@ export default {
   props: {
     item: Object
   },
+  computed: {
+    ...mapGetters('cart', ['isProductInCart'])
+  },
   methods: {
-    ...mapActions('cart', ['addToCart'])
+    ...mapActions('cart', ['addToCart', 'decrementQuantity', 'incrementQuantity', 'removeFromCart'])
   }
 }
 </script>
