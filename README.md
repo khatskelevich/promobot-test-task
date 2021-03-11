@@ -1,6 +1,7 @@
 # vue-cli-shop
 
-[Русский README.md](russian.md)
+[Русский README.md](russian.md)  
+[Демо](http://35.232.97.181:81/)
 
 ## Project setup
 ```
