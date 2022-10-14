@@ -1,7 +1,7 @@
-# vue-cli-shop
+# E-Shop
+e-shop based on vue2
 
-[Русский README.md](russian.md)  
-[Демо](http://35.232.97.181:81/)
+[Русский README.md](russian.md)
 
 ## Project setup
 ```
